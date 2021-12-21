@@ -1,12 +1,11 @@
 package com.navnath.BankOnlineConnector.Domain;
 
 public class PaymentPayloadRequest {
-	private String type;
+	private TransactionType transactionType;
 	private String transactionId;
 	private String cardNumber;
 	private ExpiryDate expiryDate;
 	private String cvv;
-	private boolean isPresent;
 	private String merchantId;
 	private String merchantName;
 	private String orderId;
@@ -15,12 +14,12 @@ public class PaymentPayloadRequest {
 	private Amount amount;
 	private String channel;
 
-	public String getType() {
-		return type;
+	public TransactionType getTransactionType() {
+		return transactionType;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setTransactionType(TransactionType transactionType) {
+		this.transactionType = transactionType;
 	}
 
 	public String getTransactionId() {
@@ -53,14 +52,6 @@ public class PaymentPayloadRequest {
 
 	public void setCvv(String cvv) {
 		this.cvv = cvv;
-	}
-
-	public boolean isPresent() {
-		return isPresent;
-	}
-
-	public void setPresent(boolean isPresent) {
-		this.isPresent = isPresent;
 	}
 
 	public String getMerchantId() {
