@@ -9,15 +9,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.navnath.BankOnlineConnector.Domain.PaymentPayloadRequest;
 import com.navnath.BankOnlineConnector.Domain.PaymentPayloadResponse;
 import com.navnath.BankOnlineConnector.handler.BankOnlineHandler;
+import com.navnath.BankOnlineConnector.service.imp.OnlineConnectorServiceImpl;
 
 @RestController
 public class BankOnlineConnectorController {
 	@Autowired
 	private BankOnlineHandler handler;
 	
+	@Autowired
+	private OnlineConnectorServiceImpl service;
+	
 	@GetMapping("/testConnectivity")
 	public String testConnectivity() {
-		return "SUCCESS";
+		return service.testConnection();
 	}
 	@PostMapping("/transaction/authorize")
 	public PaymentPayloadResponse authorize(@RequestBody PaymentPayloadRequest request) {
