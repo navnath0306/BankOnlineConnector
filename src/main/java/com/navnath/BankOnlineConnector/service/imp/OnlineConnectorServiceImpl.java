@@ -4,23 +4,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.navnath.BankOnlineConnector.Domain.AuthorizeRequest;
-import com.navnath.BankOnlineConnector.Domain.AuthorizeResponse;
+import com.navnath.BankOnlineConnector.Domain.BankRequest;
+import com.navnath.BankOnlineConnector.Domain.BankResponse;
 import com.navnath.BankOnlineConnector.service.OnlineConnectorService;
 
 @Service
-public class OnlineConnectorServiceImpl implements OnlineConnectorService{
+public class OnlineConnectorServiceImpl implements OnlineConnectorService {
 
 	@Autowired
 	private RestTemplate restClient;
-	
+
+	private static String BASE_URL = "http://localhost:7070/";
+
 	public String testConnection() {
-		return restClient.getForObject("http://localhost:7070/dummyBank/testConnectivity", String.class);
+		return restClient.getForObject(BASE_URL + "dummyBank/testConnectivity", String.class);
 	}
 
 	@Override
-	public AuthorizeResponse authorize(AuthorizeRequest request) {
-		restClient.getForObject("", AuthorizeResponse.class);
-		return null;
+	public BankResponse authorize(BankRequest request) {
+
+		BankResponse authorizeResponse = restClient.postForObject(BASE_URL + "dummyBank/authorize", request,
+				BankResponse.class);
+
+		return authorizeResponse;
 	}
 }

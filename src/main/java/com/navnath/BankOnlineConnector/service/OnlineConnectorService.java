@@ -2,12 +2,12 @@ package com.navnath.BankOnlineConnector.service;
 
 import org.springframework.stereotype.Service;
 
-import com.navnath.BankOnlineConnector.Domain.AuthorizeRequest;
-import com.navnath.BankOnlineConnector.Domain.AuthorizeResponse;
+import com.navnath.BankOnlineConnector.Domain.BankRequest;
+import com.navnath.BankOnlineConnector.Domain.BankResponse;
 
 @Service
 public interface OnlineConnectorService {
 	public String testConnection();
-	public AuthorizeResponse authorize(AuthorizeRequest request);
+	public BankResponse authorize(BankRequest request);
 	
 }
